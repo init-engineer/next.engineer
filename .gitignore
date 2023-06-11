@@ -1,0 +1,39 @@
+# Laravel
+.env
+.env.backup
+.env.production
+/vendor
+/public/css
+/public/js
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/.phpunit.cache
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+
+# npm
+npm-debug.log
+
+# Yarn
+yarn-error.log
+
+# Fleet
+/.fleet
+
+# Vue
+/node_modules
+
+# Sass
+.sass-cache
+*.css.map
+
+# Vite
+/.vite
+
+# IDE/Editor
+.idea
+.vscode
