@@ -6,10 +6,7 @@ use Illuminate\Support\Facades\Hash;
 
 trait UserAttribute
 {
-    /**
-     * @param $password
-     */
-    public function setPasswordAttribute($password): void
+    public function setPasswordAttribute(string $password): void
     {
         // If password was accidentally passed in already hashed, try not to double hash it
         // Note: Password Histories are logged from the \App\Domains\Auth\Observer\UserObserver class
@@ -20,10 +17,7 @@ trait UserAttribute
                 Hash::make($password);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAvatarAttribute()
+    public function getAvatarAttribute(): string
     {
         return $this->getAvatar();
     }

@@ -47,7 +47,7 @@ trait UserMethod
         return $this->email_verified_at !== null;
     }
 
-    public function isSocial(): bool
+    public function isProvider(): bool
     {
         return $this->provider && $this->provider_id;
     }
@@ -57,13 +57,12 @@ trait UserMethod
         return $this->permissions->pluck('description');
     }
 
-    /**
-     * @param  bool  $size
-     *
-     * @throws \Creativeorange\Gravatar\Exceptions\InvalidEmailException
-     */
-    public function getAvatar($size = null): string
+    public function getAvatar(bool $size = null): string
     {
-        return 'https://gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=' . config('boilerplate.avatar.size', $size) . '&d=mp';
+        return sprintf(
+            "https://gravatar.com/avatar/%s?s=%s&d=mp",
+            md5(strtolower(trim($this->email))),
+            config('boilerplate.avatar.size', $size)
+        );
     }
 }
