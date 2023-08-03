@@ -2,6 +2,7 @@
 
 namespace App\Domains\Auth\Listeners;
 
+use App\Domains\Auth\Events\User\PasswordReset;
 use App\Domains\Auth\Events\User\UserCreated;
 use App\Domains\Auth\Events\User\UserDeleted;
 use App\Domains\Auth\Events\User\UserDestroyed;
@@ -9,7 +10,6 @@ use App\Domains\Auth\Events\User\UserLoggedIn;
 use App\Domains\Auth\Events\User\UserRestored;
 use App\Domains\Auth\Events\User\UserStatusChanged;
 use App\Domains\Auth\Events\User\UserUpdated;
-use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Events\Dispatcher;
 
 class UserEventListener

@@ -12,7 +12,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        /**
+         * Crons Example:
+         */
+        // $schedule->command('command')->everyMinute()->when(function () {
+        //     return Crons::everySomeMinutes('command', 10);
+        // });
+        // $schedule->command('command')->everyMinute()->when(function () {
+        //     return Crons::dailyAt('command', 'time');
+        // });
+        // $schedule->command('command')->everyMinute()->when(function () {
+        //     return Crons::weeklyAt('command', 'days', 'time');
+        // });
     }
 
     /**
