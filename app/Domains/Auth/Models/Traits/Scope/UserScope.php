@@ -10,8 +10,8 @@ trait UserScope
     public function scopeSearch(Builder $query, string $term): Builder
     {
         return $query->where(function ($query) use ($term) {
-            $query->where('name', 'like', '%' . $term . '%')
-                ->orWhere('email', 'like', '%' . $term . '%');
+            $query->where('name', 'like', '%'.$term.'%')
+                ->orWhere('email', 'like', '%'.$term.'%');
         });
     }
 

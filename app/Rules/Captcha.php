@@ -12,6 +12,7 @@ class Captcha implements ValidationRule
     {
         if (empty($value)) {
             $fail(__('The captcha was invalid.'));
+
             return;
         }
 
@@ -25,7 +26,7 @@ class Captcha implements ValidationRule
             ],
         ])->getBody(), true);
 
-        if (!(isset($response['success']) && $response['success'] === true)) {
+        if (! (isset($response['success']) && $response['success'] === true)) {
             $fail(__('The captcha was invalid.'));
         }
     }

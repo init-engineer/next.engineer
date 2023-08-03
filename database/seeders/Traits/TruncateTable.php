@@ -13,11 +13,11 @@ trait TruncateTable
                 return DB::table($table)->truncate();
 
             case 'pgsql':
-                return  DB::statement('TRUNCATE TABLE ' . $table . ' RESTART IDENTITY CASCADE');
+                return DB::statement('TRUNCATE TABLE '.$table.' RESTART IDENTITY CASCADE');
 
             case 'sqlite':
             case 'sqlsrv':
-                return DB::statement('DELETE FROM ' . $table);
+                return DB::statement('DELETE FROM '.$table);
         }
 
         return false;

@@ -81,7 +81,6 @@ class PermissionRoleSeeder extends Seeder
         /**
          * Assign Permissions to other Roles
          */
-
         $this->enableForeignKeys();
     }
 }

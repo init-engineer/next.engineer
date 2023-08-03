@@ -18,6 +18,7 @@ use Illuminate\View\View;
 class RoleController extends Controller
 {
     protected RoleRepository $roleRepository;
+
     protected PermissionRepository $permissionRepository;
 
     public function __construct(

@@ -11,7 +11,7 @@ class UpdateRoleRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return !$this->role->isAdmin();
+        return ! $this->role->isAdmin();
     }
 
     public function rules(): array

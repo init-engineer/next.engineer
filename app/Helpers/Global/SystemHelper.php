@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('includeFilesInFolder')) {
+if (! function_exists('includeFilesInFolder')) {
     /**
      * Loops through a folder and requires all PHP files
      * Searches sub-directories as well.
@@ -13,7 +13,7 @@ if (!function_exists('includeFilesInFolder')) {
 
             /** @var DirectoryIterator $it */
             while ($it->valid()) {
-                if (!$it->isDot() &&
+                if (! $it->isDot() &&
                     $it->isFile() &&
                     $it->isReadable() &&
                     $it->current()->getExtension() === 'php'
@@ -29,7 +29,7 @@ if (!function_exists('includeFilesInFolder')) {
     }
 }
 
-if (!function_exists('includeRouteFiles')) {
+if (! function_exists('includeRouteFiles')) {
     function includeRouteFiles(string $folder): void
     {
         includeFilesInFolder($folder);

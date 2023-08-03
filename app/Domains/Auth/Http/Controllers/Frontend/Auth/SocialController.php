@@ -11,8 +11,6 @@ use Laravel\Socialite\Two\InvalidStateException;
 class SocialController extends Controller
 {
     /**
-     * @param $provider
-     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function redirect($provider)
@@ -21,10 +19,8 @@ class SocialController extends Controller
     }
 
     /**
-     * @param $provider
-     * @param  UserService  $userService
-     *
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \App\Exceptions\GeneralException
      */
     public function callback($provider, UserService $userService)
@@ -32,9 +28,9 @@ class SocialController extends Controller
         try {
             $user = $userService->registerProvider(Socialite::driver($provider)->user(), $provider);
         } catch (InvalidStateException $exception) {
-            session()->increment($provider . '_socialite_attempt_count');
+            session()->increment($provider.'_socialite_attempt_count');
 
-            if (session($provider . '_socialite_attempt_count') > 2) {
+            if (session($provider.'_socialite_attempt_count') > 2) {
                 return redirect('/');
             }
 

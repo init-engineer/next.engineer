@@ -5,8 +5,8 @@ namespace App\Domains\Auth\Rules;
 use App\Domains\Auth\Models\User;
 use App\Domains\Auth\Services\UserService;
 use Closure;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Facades\Hash;
 
 class UnusedPassword implements ValidationRule
 {
@@ -34,6 +34,7 @@ class UnusedPassword implements ValidationRule
 
         if (! $this->user || null === $this->user) {
             $fail('User not found');
+
             return;
         }
 
@@ -48,6 +49,7 @@ class UnusedPassword implements ValidationRule
                 $fail(__('You can not set a password that you have previously used within the last :num times.', [
                     'num' => config('boilerplate.access.user.password_history'),
                 ]));
+
                 return;
             }
         }

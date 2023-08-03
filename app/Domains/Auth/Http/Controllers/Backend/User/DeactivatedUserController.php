@@ -5,9 +5,9 @@ namespace App\Domains\Auth\Http\Controllers\Backend\User;
 use App\Domains\Auth\Models\User;
 use App\Domains\Auth\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 

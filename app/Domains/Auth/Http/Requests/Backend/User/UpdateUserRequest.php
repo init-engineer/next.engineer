@@ -11,14 +11,14 @@ class UpdateUserRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return !($this->user->isMasterAdmin() && !$this->user()->isMasterAdmin());
+        return ! ($this->user->isMasterAdmin() && ! $this->user()->isMasterAdmin());
     }
 
     public function rules(): array
     {
         return [
             'type' => [Rule::requiredIf(function () {
-                return !$this->user->isMasterAdmin();
+                return ! $this->user->isMasterAdmin();
             }), Rule::in([
                 User::TYPE_ADMIN,
                 User::TYPE_USER,

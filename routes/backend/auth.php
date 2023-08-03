@@ -31,7 +31,7 @@ Route::group([
         'as' => 'user.',
     ], function () {
         Route::group([
-            'middleware' => 'role:' . config('boilerplate.access.role.admin'),
+            'middleware' => 'role:'.config('boilerplate.access.role.admin'),
         ], function () {
             Route::get('deleted', [DeletedUserController::class, 'index'])
                 ->name('deleted')
@@ -68,7 +68,7 @@ Route::group([
         });
 
         Route::group([
-            'middleware' => 'permission:' . implode('|', [
+            'middleware' => 'permission:'.implode('|', [
                 'admin.access.user.list',
                 'admin.access.user.deactivate',
                 'admin.access.user.reactivate',
@@ -79,7 +79,7 @@ Route::group([
         ], function () {
             Route::get('deactivated', [DeactivatedUserController::class, 'index'])
                 ->name('deactivated')
-                ->middleware('permission:' . implode('|', [
+                ->middleware('permission:'.implode('|', [
                     'admin.access.user.reactivate',
                 ]))
                 ->breadcrumbs(function (Trail $trail) {
@@ -89,7 +89,7 @@ Route::group([
 
             Route::get('/', [UserController::class, 'index'])
                 ->name('index')
-                ->middleware('permission:' . implode('|', [
+                ->middleware('permission:'.implode('|', [
                     'admin.access.user.list',
                     'admin.access.user.deactivate',
                     'admin.access.user.clear-session',
@@ -104,7 +104,7 @@ Route::group([
             Route::group(['prefix' => '{user}'], function () {
                 Route::get('/', [UserController::class, 'show'])
                     ->name('show')
-                    ->middleware('permission:' . implode('|', [
+                    ->middleware('permission:'.implode('|', [
                         'admin.access.user.list',
                     ]))
                     ->breadcrumbs(function (Trail $trail, User $user) {
@@ -115,20 +115,20 @@ Route::group([
                 Route::patch('mark/{status}', [DeactivatedUserController::class, 'update'])
                     ->name('mark')
                     ->where(['status' => '[0,1]'])
-                    ->middleware('permission:' . implode('|', [
+                    ->middleware('permission:'.implode('|', [
                         'admin.access.user.deactivate',
                         'admin.access.user.reactivate',
                     ]));
 
                 Route::post('clear-session', [UserSessionController::class, 'update'])
                     ->name('clear-session')
-                    ->middleware('permission:' . implode('|', [
+                    ->middleware('permission:'.implode('|', [
                         'admin.access.user.clear-session',
                     ]));
 
                 Route::get('password/change', [UserPasswordController::class, 'edit'])
                     ->name('change-password')
-                    ->middleware('permission:' . implode('|', [
+                    ->middleware('permission:'.implode('|', [
                         'admin.access.user.change-password',
                     ]))
                     ->breadcrumbs(function (Trail $trail, User $user) {
@@ -138,7 +138,7 @@ Route::group([
 
                 Route::patch('password/change', [UserPasswordController::class, 'update'])
                     ->name('change-password.update')
-                    ->middleware('permission:' . implode('|', [
+                    ->middleware('permission:'.implode('|', [
                         'admin.access.user.change-password',
                     ]));
             });
@@ -148,7 +148,7 @@ Route::group([
     Route::group([
         'prefix' => 'role',
         'as' => 'role.',
-        'middleware' => 'role:' . config('boilerplate.access.role.admin'),
+        'middleware' => 'role:'.config('boilerplate.access.role.admin'),
     ], function () {
         Route::get('/', [RoleController::class, 'index'])
             ->name('index')

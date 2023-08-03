@@ -37,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
         UserScope;
 
     public const TYPE_ADMIN = 'admin';
+
     public const TYPE_USER = 'user';
 
     /**
@@ -129,8 +130,9 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
      */
     public function canBeImpersonated(): bool
     {
-        return !$this->isMasterAdmin();
+        return ! $this->isMasterAdmin();
     }
+
     /**
      * Create a new factory instance for the model.
      */

@@ -144,7 +144,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         }
         throw new ModelNotFoundException(
             'You must declare your repository $model attribute with an Illuminate\Database\Eloquent\Model '
-            . 'namespace to use this feature.'
+            .'namespace to use this feature.'
         );
     }
 
@@ -210,7 +210,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function deleteFromRequest(
         array $attributesToAddOrReplace = [],
         array $attributesToExcept = []
-    ): bool|null {
+    ): ?bool {
         $this->exceptAttributesFromRequest($attributesToExcept);
         $this->addOrReplaceAttributesInRequest($attributesToAddOrReplace);
 
@@ -230,7 +230,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     /**
      * Delete a model instance from its primary key.
      */
-    public function deleteByPrimary(int $primary): bool|null
+    public function deleteByPrimary(int $primary): ?bool
     {
         return $this->getModel()->findOrFail($primary)->delete();
     }
@@ -259,7 +259,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
             $perPage,
             $page,
             [
-                'path'  => $this->request->url(),
+                'path' => $this->request->url(),
                 'query' => $this->request->query(),
             ]
         );
@@ -271,7 +271,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function findOneByPrimary(
         int $primary,
         bool $throwsExceptionIfNotFound = true
-    ): Model|null {
+    ): ?Model {
         return $throwsExceptionIfNotFound
             ? $this->getModel()->findOrFail($primary)
             : $this->getModel()->find($primary);
@@ -283,7 +283,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function findOneFromArray(
         array $data,
         bool $throwsExceptionIfNotFound = true
-    ): Model|null {
+    ): ?Model {
         return $throwsExceptionIfNotFound
             ? $this->getModel()->where($data)->firstOrFail()
             : $this->getModel()->where($data)->first();

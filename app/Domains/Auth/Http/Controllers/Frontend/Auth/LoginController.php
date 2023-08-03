@@ -30,8 +30,6 @@ class LoginController extends Controller
 
     /**
      * Where to redirect users after login.
-     *
-     * @return string
      */
     public function redirectPath(): string
     {
@@ -70,7 +68,6 @@ class LoginController extends Controller
      *
      * Attempt to log the user into the application.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return bool
      */
     protected function attemptLogin(Request $request)
@@ -90,8 +87,6 @@ class LoginController extends Controller
     /**
      * The user has been authenticated.
      *
-     * @param  Request  $request
-     * @param $user
      *
      * @return mixed
      */

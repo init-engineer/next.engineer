@@ -19,7 +19,9 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     protected UserRepository $userRepository;
+
     protected RoleRepository $roleRepository;
+
     protected PermissionRepository $permissionRepository;
 
     public function __construct(
@@ -40,7 +42,7 @@ class UserController extends Controller
     public function create(): Factory|View
     {
         return view('backend.auth.user.create')
-            ->with('roles',$this->roleRepository->get())
+            ->with('roles', $this->roleRepository->get())
             ->with('categories', $this->permissionRepository->getCategorizedPermissions())
             ->with('general', $this->permissionRepository->getUncategorizedPermissions());
     }

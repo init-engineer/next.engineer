@@ -12,7 +12,7 @@ class AccessControl
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, Closure $next):  Closure|Redirector|RedirectResponse
+    public function handle(Request $request, Closure $next): Closure|Redirector|RedirectResponse
     {
         /**
          * 設定 domain address 白名單
@@ -34,7 +34,7 @@ class AccessControl
             /**
              * 如果 origin 帶有 http 或 https，則把它們移除，只保留網域
              */
-            $pattern = "";
+            $pattern = '';
             if (preg_match('#^http?://#', $origin)) {
                 $pattern = preg_replace('#^http?://#', '', $origin);
             }

@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 /**
  * Modified from: https://github.com/Okipa/laravel-base-repository
@@ -77,7 +77,7 @@ interface BaseRepositoryInterface
     public function deleteFromRequest(
         array $attributesToAddOrReplace = [],
         array $attributesToExcept = []
-    ): bool|null;
+    ): ?bool;
 
     /**
      * Delete a model instance from a data array.
@@ -87,7 +87,7 @@ interface BaseRepositoryInterface
     /**
      * Delete a model instance from its primary key.
      */
-    public function deleteByPrimary(int $primary): bool|null;
+    public function deleteByPrimary(int $primary): ?bool;
 
     /**
      * Delete multiple model instances from their primary keys.
@@ -108,7 +108,7 @@ interface BaseRepositoryInterface
     public function findOneByPrimary(
         int $primary,
         bool $throwsExceptionIfNotFound = true
-    ): Model|null;
+    ): ?Model;
 
     /**
      * Find one model instance from an associative array.
@@ -116,7 +116,7 @@ interface BaseRepositoryInterface
     public function findOneFromArray(
         array $data,
         bool $throwsExceptionIfNotFound = true
-    ): Model|null;
+    ): ?Model;
 
     /**
      * Find multiple model instances from a « where » parameters array.

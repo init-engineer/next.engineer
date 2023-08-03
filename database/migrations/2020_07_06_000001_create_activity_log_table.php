@@ -23,14 +23,14 @@ return new class extends Migration
             $table->timestamps();
 
             $table->index('log_name');
-            $table->index(array(
+            $table->index([
                 'subject_id',
                 'subject_type',
-            ), 'subject');
-            $table->index(array(
+            ], 'subject');
+            $table->index([
                 'causer_id',
                 'causer_type',
-            ), 'causer');
+            ], 'causer');
         });
     }
 

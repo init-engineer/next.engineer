@@ -37,7 +37,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function loginAsAdmin($admin = false): User
     {
-        if (!$admin) {
+        if (! $admin) {
             $admin = $this->getMasterAdmin();
         }
 

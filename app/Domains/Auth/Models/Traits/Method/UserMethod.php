@@ -60,7 +60,7 @@ trait UserMethod
     public function getAvatar(bool $size = null): string
     {
         return sprintf(
-            "https://gravatar.com/avatar/%s?s=%s&d=mp",
+            'https://gravatar.com/avatar/%s?s=%s&d=mp',
             md5(strtolower(trim($this->email))),
             config('boilerplate.avatar.size', $size)
         );

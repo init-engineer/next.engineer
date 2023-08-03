@@ -9,7 +9,7 @@ class EditUserPasswordRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return !($this->user->isMasterAdmin() && !$this->user()->isMasterAdmin());
+        return ! ($this->user->isMasterAdmin() && ! $this->user()->isMasterAdmin());
     }
 
     public function rules(): array

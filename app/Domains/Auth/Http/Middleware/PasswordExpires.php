@@ -10,6 +10,7 @@ class PasswordExpires
 {
     /**
      * @return \Illuminate\Http\RedirectResponse|mixed
+     *
      * @throws \Exception
      */
     public function handle(Request $request, Closure $next)
