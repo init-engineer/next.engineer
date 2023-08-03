@@ -2,21 +2,28 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Traits\TruncateTable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    use TruncateTable;
+
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        // \App\Domains\Auth\Models\User::factory(10)->create();
+        Model::unguard();
 
-        // \App\Domains\Auth\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->truncateMultiple([
+            'activity_log',
+            'failed_jobs',
+        ]);
+
+        $this->call(AuthSeeder::class);
+
+        Model::reguard();
     }
 }

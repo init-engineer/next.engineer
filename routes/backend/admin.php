@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\DashboardController;
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
 /**

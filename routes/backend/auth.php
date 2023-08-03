@@ -8,7 +8,7 @@ use App\Domains\Auth\Http\Controllers\Backend\User\UserPasswordController;
 use App\Domains\Auth\Http\Controllers\Backend\User\UserSessionController;
 use App\Domains\Auth\Models\Role;
 use App\Domains\Auth\Models\User;
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
 /**

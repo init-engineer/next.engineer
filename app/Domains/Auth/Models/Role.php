@@ -16,19 +16,14 @@ class Role extends SpatieRole
         RoleMethod,
         RoleScope;
 
-    /**
-     * @var string[]
-     */
     protected $with = [
         'permissions',
     ];
 
     /**
      * Create a new factory instance for the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
-    protected static function newFactory()
+    protected static function newFactory(): RoleFactory
     {
         return RoleFactory::new();
     }
