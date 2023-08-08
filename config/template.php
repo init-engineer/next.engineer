@@ -1,17 +1,16 @@
 <?php
 
 /**
- * All configuration options for Laravel Boilerplate
- * http://laravel-boilerplate.com.
+ * All configuration options for Laravel Template at:
+ * https://github.com/Kantai235/Laravel-Template/
  */
-
 return [
     /*
     |--------------------------------------------------------------------------
     | Access
     |--------------------------------------------------------------------------
     |
-    | Configurations related to the boilerplate's access/authorization options
+    | Configurations related to the template's access/authorization options
     */
     'access' => [
         'captcha' => [
@@ -87,13 +86,18 @@ return [
         ],
 
         'role' => [
-
             /*
              * The name of the administrator role
              * Should be Administrator by design and unable to change from the backend
              * It is not recommended to change
              */
             'admin' => 'Administrator',
+
+            /**
+             * The name of the announcement administrator role
+             * It is not recommended to change
+             */
+            'announcement' => 'Announcement Management',
         ],
     ],
 
@@ -102,7 +106,7 @@ return [
     | Avatar
     |--------------------------------------------------------------------------
     |
-    | Configurations related to the boilerplate's avatar system
+    | Configurations related to the template's avatar system
     */
     'avatar' => [
 
@@ -145,7 +149,7 @@ return [
     | Locale
     |--------------------------------------------------------------------------
     |
-    | Configurations related to the boilerplate's locale system
+    | Configurations related to the template's locale system
     */
     'locale' => [
         /*
@@ -167,8 +171,8 @@ return [
         'languages' => [
             'ar' => ['name' => 'Arabic', 'rtl' => true],
             'az' => ['name' => 'Azerbaijan', 'rtl' => false],
-            'zh' => ['name' => 'Chinese Simplified', 'rtl' => false],
-            'zh-TW' => ['name' => 'Chinese Traditional', 'rtl' => false],
+            'zh' => ['name' => '简体中文', 'rtl' => false],
+            'zh-TW' => ['name' => '繁體中文', 'rtl' => false],
             'cs' => ['name' => 'Czech', 'rtl' => false],
             'da' => ['name' => 'Danish', 'rtl' => false],
             'de' => ['name' => 'German', 'rtl' => false],
@@ -180,7 +184,7 @@ return [
             'he' => ['name' => 'Hebrew', 'rtl' => true],
             'id' => ['name' => 'Indonesian', 'rtl' => false],
             'it' => ['name' => 'Italian', 'rtl' => false],
-            'ja' => ['name' => 'Japanese', 'rtl' => false],
+            'ja' => ['name' => '日本語', 'rtl' => false],
             'ko' => ['name' => 'Korean', 'rtl' => false],
             'nl' => ['name' => 'Dutch', 'rtl' => false],
             'no' => ['name' => 'Norwegian', 'rtl' => false],

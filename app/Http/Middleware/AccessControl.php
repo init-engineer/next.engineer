@@ -3,16 +3,14 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
 
 class AccessControl
 {
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, Closure $next): Closure|Redirector|RedirectResponse
+    public function handle(Request $request, Closure $next)
     {
         /**
          * 設定 domain address 白名單

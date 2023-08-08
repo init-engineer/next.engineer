@@ -25,7 +25,7 @@ class DeactivatedUserController extends Controller
         return view('backend.auth.user.deactivated');
     }
 
-    public function update(Request $request, User $user, int $status): Redirector|RedirectResponse
+    public function update(Request $request, User $user, bool $status): Redirector|RedirectResponse
     {
         $this->userRepository->mark($user, $status);
 

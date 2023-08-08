@@ -16,6 +16,18 @@ class Role extends SpatieRole
         RoleMethod,
         RoleScope;
 
+    /**
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = [
+        'type',
+        'name',
+        'guard_name',
+    ];
+
+    /**
+     * The relationships that should always be loaded.
+     */
     protected $with = [
         'permissions',
     ];

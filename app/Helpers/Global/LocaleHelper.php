@@ -41,7 +41,7 @@ if (! function_exists('setLocaleReadingDirection')) {
          * For use in the blade directive in BladeServiceProvider
          */
         if (! app()->runningInConsole()) {
-            if (config('boilerplate.locale.languages')[$locale]['rtl']) {
+            if (config('template.locale.languages')[$locale]['rtl']) {
                 session([
                     'lang-rtl' => true,
                 ]);
@@ -55,6 +55,6 @@ if (! function_exists('setLocaleReadingDirection')) {
 if (! function_exists('getLocaleName')) {
     function getLocaleName(string $locale): string
     {
-        return config('boilerplate.locale.languages')[$locale]['name'];
+        return config('template.locale.languages')[$locale]['name'];
     }
 }

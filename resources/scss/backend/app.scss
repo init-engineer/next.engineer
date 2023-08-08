@@ -12,8 +12,8 @@ $enable-rtl: true; /* stylelint-disable-line scss/dollar-variable-default */
  * CoreUI at:
  * https://coreui.io/
  */
-@import '~@coreui/coreui/scss/coreui';
-@import '~@coreui/icons/css/free.min.css';
+@import '@coreui/coreui/scss/coreui';
+@import '@coreui/icons/css/free.min.css';
 
 @import "layout";
 

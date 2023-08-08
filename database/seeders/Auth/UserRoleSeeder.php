@@ -17,9 +17,9 @@ class UserRoleSeeder extends Seeder
     {
         $this->disableForeignKeys();
 
-        User::find(1)->assignRole(config('boilerplate.access.role.admin'));
-        User::find(1)->assignRole(config('boilerplate.access.role.social_admin'));
-        User::find(1)->assignRole(config('boilerplate.access.role.announcement_admin'));
+        User::find(1)->assignRole(config('template.access.role.admin'));
+        User::find(1)->assignRole(config('template.access.role.social_admin'));
+        User::find(1)->assignRole(config('template.access.role.announcement_admin'));
 
         $this->enableForeignKeys();
     }

@@ -17,7 +17,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     /**
      * The repository associated main model.
      */
-    protected Model $model;
+    protected $model;
 
     /**
      * The repository associated request.
@@ -241,6 +241,19 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function deleteMultipleFromPrimaries(array $instancePrimaries): int
     {
         return $this->getModel()->destroy($instancePrimaries);
+    }
+
+    /**
+     * Force delete a model instance from its primary key.
+     */
+    public function forceDeleteByPrimary(int $primary): ?bool
+    {
+        return $this->getModel()->findOrFail($primary)->forceDelete();
+    }
+
+    public function restoryByPrimary(int $primary): ?bool
+    {
+        return $this->getModel()->findOrFail($primary)->restory();
     }
 
     /**

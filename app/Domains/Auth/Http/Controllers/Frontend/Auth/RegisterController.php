@@ -47,7 +47,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm(): View|Factory
     {
-        abort_unless(config('boilerplate.access.user.registration'), 404);
+        abort_unless(config('template.access.user.registration'), 404);
 
         return view('frontend.auth.register');
     }
@@ -81,7 +81,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        abort_unless(config('boilerplate.access.user.registration'), 404);
+        abort_unless(config('template.access.user.registration'), 404);
 
         return $this->userRepository->create($data);
     }

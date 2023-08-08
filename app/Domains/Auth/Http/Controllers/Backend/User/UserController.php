@@ -42,7 +42,7 @@ class UserController extends Controller
     public function create(): Factory|View
     {
         return view('backend.auth.user.create')
-            ->with('roles', $this->roleRepository->get())
+            ->with('roles', $this->roleRepository->getAll())
             ->with('categories', $this->permissionRepository->getCategorizedPermissions())
             ->with('general', $this->permissionRepository->getUncategorizedPermissions());
     }
@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         return view('backend.auth.user.edit')
             ->with('user', $user)
-            ->with('roles', $this->roleRepository->get())
+            ->with('roles', $this->roleRepository->getAll())
             ->with('categories', $this->permissionRepository->getCategorizedPermissions())
             ->with('general', $this->permissionRepository->getUncategorizedPermissions())
             ->with('usedPermissions', $user->permissions->modelKeys());
@@ -83,7 +83,7 @@ class UserController extends Controller
 
     public function destroy(DeleteUserRequest $request, User $user): Redirector|RedirectResponse
     {
-        $this->userRepository->delete($user);
+        $this->userRepository->deleteByPrimary($user->id);
 
         return redirect()
             ->route('admin.auth.user.deleted')

@@ -95,6 +95,11 @@ interface BaseRepositoryInterface
     public function deleteMultipleFromPrimaries(array $instancePrimaries): int;
 
     /**
+     * Force delete a model instance from its primary key.
+     */
+    public function forceDeleteByPrimary(int $primary): ?bool;
+
+    /**
      * Paginate array results.
      */
     public function paginateArrayResults(

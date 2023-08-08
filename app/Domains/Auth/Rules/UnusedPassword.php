@@ -20,7 +20,7 @@ class UnusedPassword implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // Option is off
-        if (! config('boilerplate.access.user.password_history')) {
+        if (! config('template.access.user.password_history')) {
             return;
         }
 
@@ -40,14 +40,14 @@ class UnusedPassword implements ValidationRule
 
         $histories = $this->user
             ->passwordHistories()
-            ->take(config('boilerplate.access.user.password_history'))
+            ->take(config('template.access.user.password_history'))
             ->orderBy('id', 'desc')
             ->get();
 
         foreach ($histories as $history) {
             if (Hash::check($value, $history->password)) {
                 $fail(__('You can not set a password that you have previously used within the last :num times.', [
-                    'num' => config('boilerplate.access.user.password_history'),
+                    'num' => config('template.access.user.password_history'),
                 ]));
 
                 return;

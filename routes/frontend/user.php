@@ -16,7 +16,7 @@ Route::group([
     'middleware' => [
         'auth',
         'password.expires',
-        config('boilerplate.access.middleware.verified'),
+        config('template.access.middleware.verified'),
     ],
 ], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])

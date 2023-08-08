@@ -24,7 +24,7 @@ trait UserMethod
 
     public function hasAllAccess(): bool
     {
-        return $this->isAdmin() && $this->hasRole(config('boilerplate.access.role.admin'));
+        return $this->isAdmin() && $this->hasRole(config('template.access.role.admin'));
     }
 
     public function isType($type): bool
@@ -34,7 +34,7 @@ trait UserMethod
 
     public function canChangeEmail(): bool
     {
-        return config('boilerplate.access.user.change_email');
+        return config('template.access.user.change_email');
     }
 
     public function isActive(): bool
@@ -62,7 +62,7 @@ trait UserMethod
         return sprintf(
             'https://gravatar.com/avatar/%s?s=%s&d=mp',
             md5(strtolower(trim($this->email))),
-            config('boilerplate.avatar.size', $size)
+            config('template.avatar.size', $size)
         );
     }
 }

@@ -33,7 +33,7 @@ trait UserScope
     public function scopeAllAccess(Builder $query): Builder
     {
         return $query->whereHas('roles', function ($query) {
-            $query->where('name', config('boilerplate.access.role.admin'));
+            $query->where('name', config('template.access.role.admin'));
         });
     }
 

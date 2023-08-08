@@ -50,7 +50,7 @@ Route::group([
 
             // These routes require the users email to be verified
             Route::group([
-                'middleware' => config('boilerplate.access.middleware.verified'),
+                'middleware' => config('template.access.middleware.verified'),
             ], function () {
                 // Passwords
                 Route::get('password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])

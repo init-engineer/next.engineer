@@ -13,25 +13,21 @@ use Tabuna\Breadcrumbs\Trail;
 
 /**
  * All route names are prefixed with 'admin.auth'.
- *
- * 使用者與身分管理
  */
 Route::group([
     'prefix' => 'auth',
     'as' => 'auth.',
-    'middleware' => config('boilerplate.access.middleware.confirm'),
+    'middleware' => config('template.access.middleware.confirm'),
 ], function () {
     /**
      * All route names are prefixed with 'admin.auth.user'.
-     *
-     * 使用者管理
      */
     Route::group([
         'prefix' => 'user',
         'as' => 'user.',
     ], function () {
         Route::group([
-            'middleware' => 'role:'.config('boilerplate.access.role.admin'),
+            'middleware' => 'role:'.config('template.access.role.admin'),
         ], function () {
             Route::get('deleted', [DeletedUserController::class, 'index'])
                 ->name('deleted')
@@ -145,10 +141,13 @@ Route::group([
         });
     });
 
+    /**
+     * All route names are prefixed with 'admin.auth.role'.
+     */
     Route::group([
         'prefix' => 'role',
         'as' => 'role.',
-        'middleware' => 'role:'.config('boilerplate.access.role.admin'),
+        'middleware' => 'role:'.config('template.access.role.admin'),
     ], function () {
         Route::get('/', [RoleController::class, 'index'])
             ->name('index')

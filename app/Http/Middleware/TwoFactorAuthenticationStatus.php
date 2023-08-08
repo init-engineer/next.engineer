@@ -9,14 +9,14 @@ use Illuminate\Routing\Redirector;
 
 class TwoFactorAuthenticationStatus
 {
-    public function handle(Request $request, Closure $next, string $status = 'enabled'): Closure|Redirector|RedirectResponse
+    public function handle(Request $request, Closure $next, string $status = 'enabled')
     {
         if (! in_array($status, ['enabled', 'disabled'])) {
             abort(404);
         }
 
         // If the backend does not require 2FA than continue
-        if ($status === 'enabled' && $request->is('admin*') && ! config('boilerplate.access.user.admin_requires_2fa')) {
+        if ($status === 'enabled' && $request->is('admin*') && ! config('template.access.user.admin_requires_2fa')) {
             return $next($request);
         }
 

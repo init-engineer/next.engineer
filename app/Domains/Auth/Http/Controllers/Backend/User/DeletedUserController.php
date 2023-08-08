@@ -26,7 +26,7 @@ class DeletedUserController extends Controller
 
     public function update(User $deletedUser): Redirector|RedirectResponse
     {
-        $this->userService->restore($deletedUser);
+        $this->userRepository->restoryByPrimary($deletedUser->id);
 
         return redirect()
             ->route('admin.auth.user.index')
@@ -35,9 +35,9 @@ class DeletedUserController extends Controller
 
     public function destroy(User $deletedUser): Redirector|RedirectResponse
     {
-        abort_unless(config('boilerplate.access.user.permanently_delete'), 404);
+        abort_unless(config('template.access.user.permanently_delete'), 404);
 
-        $this->userService->destroy($deletedUser);
+        $this->userRepository->deleteByPrimary($deletedUser->id);
 
         return redirect()
             ->route('admin.auth.user.deleted')
