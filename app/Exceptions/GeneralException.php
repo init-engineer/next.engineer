@@ -33,6 +33,6 @@ class GeneralException extends Exception
         return redirect()
             ->back()
             ->withInput()
-            ->withFlashDanger($this->message);
+            ->with('flash_danger', $this->message);
     }
 }

@@ -23,6 +23,6 @@ class UpdatePasswordController extends Controller
             ->route('frontend.user.account', [
                 '#password',
             ])
-            ->withFlashSuccess(__('Password successfully updated.'));
+            ->with('flash_success', __('Password successfully updated.'));
     }
 }

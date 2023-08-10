@@ -33,6 +33,6 @@ class TwoFactorAuthenticationController extends Controller
 
         return redirect()
             ->route('frontend.auth.account.2fa.show')
-            ->withFlashSuccess(__('Two Factor Recovery Codes Regenerated'));
+            ->with('flash_success', __('Two Factor Recovery Codes Regenerated'));
     }
 }

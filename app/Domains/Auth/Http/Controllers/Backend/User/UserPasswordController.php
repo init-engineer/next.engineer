@@ -33,6 +33,6 @@ class UserPasswordController extends Controller
 
         return redirect()
             ->route('admin.auth.user.index')
-            ->withFlashSuccess(__('The user\'s password was successfully updated.'));
+            ->with('flash_success', __('The user\'s password was successfully updated.'));
     }
 }

@@ -33,6 +33,6 @@ class DeactivatedUserController extends Controller
             $status === 1 || ! $request->user()->can('admin.access.user.reactivate') ?
                 'admin.auth.user.index' :
                 'admin.auth.user.deactivated'
-        )->withFlashSuccess(__('The user was successfully updated.'));
+        )->with('flash_success', __('The user was successfully updated.'));
     }
 }

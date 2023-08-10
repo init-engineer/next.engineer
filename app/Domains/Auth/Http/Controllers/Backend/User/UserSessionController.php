@@ -26,6 +26,6 @@ class UserSessionController extends Controller
 
         return redirect()
             ->back()
-            ->withFlashSuccess(__('The user\'s session was successfully cleared.'));
+            ->with('flash_success', __('The user\'s session was successfully cleared.'));
     }
 }

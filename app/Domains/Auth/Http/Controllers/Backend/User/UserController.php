@@ -2,6 +2,9 @@
 
 namespace App\Domains\Auth\Http\Controllers\Backend\User;
 
+use App\Domains\Auth\Events\User\UserCreated;
+use App\Domains\Auth\Events\User\UserDeleted;
+use App\Domains\Auth\Events\User\UserUpdated;
 use App\Domains\Auth\Http\Requests\Backend\User\DeleteUserRequest;
 use App\Domains\Auth\Http\Requests\Backend\User\EditUserRequest;
 use App\Domains\Auth\Http\Requests\Backend\User\StoreUserRequest;
@@ -10,6 +13,7 @@ use App\Domains\Auth\Models\User;
 use App\Domains\Auth\Repositories\PermissionRepository;
 use App\Domains\Auth\Repositories\RoleRepository;
 use App\Domains\Auth\Repositories\UserRepository;
+use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -51,9 +55,11 @@ class UserController extends Controller
     {
         $user = $this->userRepository->createOrUpdateFromArray($request->validated());
 
+        event(new UserCreated($user));
+
         return redirect()
             ->route('admin.auth.user.show', $user)
-            ->withFlashSuccess(__('The user was successfully created.'));
+            ->with('flash_success', __('The user was successfully created.'));
     }
 
     public function show(User $user): Factory|View
@@ -74,19 +80,27 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user): Redirector|RedirectResponse
     {
-        $this->userRepository->updateByPrimary($user->id, $request->validated());
+        $user = $this->userRepository->updateByPrimary($user->id, $request->validated(), false);
+
+        event(new UserUpdated($user));
 
         return redirect()
             ->route('admin.auth.user.show', $user)
-            ->withFlashSuccess(__('The user was successfully updated.'));
+            ->with('flash_success', __('The user was successfully updated.'));
     }
 
     public function destroy(DeleteUserRequest $request, User $user): Redirector|RedirectResponse
     {
+        if ($user->id === $request->user()->id) {
+            throw new GeneralException(__('You can not delete yourself.'));
+        }
+
         $this->userRepository->deleteByPrimary($user->id);
+
+        event(new UserDeleted($user));
 
         return redirect()
             ->route('admin.auth.user.deleted')
-            ->withFlashSuccess(__('The user was successfully deleted.'));
+            ->with('flash_success', __('The user was successfully deleted.'));
     }
 }

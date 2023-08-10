@@ -72,7 +72,7 @@
                     <td>{{ $user->last_login_ip ?? __('N/A') }}</td>
                 </tr>
 
-                @if ($user->isSocial())
+                @if ($user->isProvider())
                     <tr>
                         <th>@lang('Provider')</th>
                         <td>{{ $user->provider ?? __('N/A') }}</td>

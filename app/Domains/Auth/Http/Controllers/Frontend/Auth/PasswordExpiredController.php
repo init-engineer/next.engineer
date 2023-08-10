@@ -36,6 +36,6 @@ class PasswordExpiredController extends Controller
 
         return redirect()
             ->route('frontend.user.account')
-            ->withFlashSuccess(__('Password successfully updated.'));
+            ->with('flash_success', __('Password successfully updated.'));
     }
 }

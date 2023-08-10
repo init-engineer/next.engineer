@@ -23,6 +23,6 @@ class DisableTwoFactorAuthenticationController extends Controller
             ->route('frontend.user.account', [
                 '#two-factor-authentication',
             ])
-            ->withFlashSuccess(__('Two Factor Authentication Successfully Disabled'));
+            ->with('flash_success', __('Two Factor Authentication Successfully Disabled'));
     }
 }

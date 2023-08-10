@@ -53,7 +53,7 @@ class RoleController extends Controller
 
         return redirect()
             ->route('admin.auth.role.index')
-            ->withFlashSuccess(__('The role was successfully created.'));
+            ->with('flash_success', __('The role was successfully created.'));
     }
 
     public function edit(EditRoleRequest $request, Role $role): Factory|View
@@ -73,7 +73,7 @@ class RoleController extends Controller
 
         return redirect()
             ->route('admin.auth.role.index')
-            ->withFlashSuccess(__('The role was successfully updated.'));
+            ->with('flash_success', __('The role was successfully updated.'));
     }
 
     public function destroy(DeleteRoleRequest $request, Role $role): Redirector|RedirectResponse
@@ -88,6 +88,6 @@ class RoleController extends Controller
 
         return redirect()
             ->route('admin.auth.role.index')
-            ->withFlashSuccess(__('The role was successfully deleted.'));
+            ->with('flash_success', __('The role was successfully deleted.'));
     }
 }

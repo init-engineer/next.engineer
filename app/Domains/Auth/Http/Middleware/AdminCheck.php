@@ -16,6 +16,6 @@ class AdminCheck
 
         return redirect()
             ->route('frontend.index')
-            ->withFlashDanger(__('You do not have access to do that.'));
+            ->with('flash_danger', __('You do not have access to do that.'));
     }
 }

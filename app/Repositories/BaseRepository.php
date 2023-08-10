@@ -248,12 +248,12 @@ abstract class BaseRepository implements BaseRepositoryInterface
      */
     public function forceDeleteByPrimary(int $primary): ?bool
     {
-        return $this->getModel()->findOrFail($primary)->forceDelete();
+        return $this->getModel()->onlyTrashed()->findOrFail($primary)->forceDelete();
     }
 
-    public function restoryByPrimary(int $primary): ?bool
+    public function restoreByPrimary(int $primary): ?bool
     {
-        return $this->getModel()->findOrFail($primary)->restory();
+        return $this->getModel()->onlyTrashed()->findOrFail($primary)->restore();
     }
 
     /**
