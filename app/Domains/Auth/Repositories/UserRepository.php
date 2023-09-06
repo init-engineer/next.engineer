@@ -18,7 +18,7 @@ class UserRepository extends BaseRepository
     {
         $user = $this->findOneByPrimary($info->id);
 
-        if (!$user) {
+        if (! $user) {
             $user = $this->createOrUpdateFromArray([
                 'name' => $info->name,
                 'email' => $info->email,
@@ -49,7 +49,7 @@ class UserRepository extends BaseRepository
 
         $user->syncRoles($data['roles'] ?? []);
 
-        if (!config('template.access.user.only_roles')) {
+        if (! config('template.access.user.only_roles')) {
             $user->syncPermissions($data['permissions'] ?? []);
         }
 
@@ -57,7 +57,7 @@ class UserRepository extends BaseRepository
 
         // They didn't want to auto verify the email, but do they want to send the confirmation email to do so?
         // phpcs:disable
-        if (!isset($data['email_verified']) && isset($data['send_confirmation_email']) && $data['send_confirmation_email'] === '1') {
+        if (! isset($data['email_verified']) && isset($data['send_confirmation_email']) && $data['send_confirmation_email'] === '1') {
             $user->sendEmailVerificationNotification();
         }
 
@@ -79,11 +79,11 @@ class UserRepository extends BaseRepository
             'type' => $type,
         ]), $saveMissingModelFillableAttributesToNull);
 
-        if (!$user->isMasterAdmin()) {
+        if (! $user->isMasterAdmin()) {
             // Replace selected roles/permissions
             $user->syncRoles($data['roles'] ?? []);
 
-            if (!config('template.access.user.only_roles')) {
+            if (! config('template.access.user.only_roles')) {
                 $user->syncPermissions($data['permissions'] ?? []);
             }
         }
