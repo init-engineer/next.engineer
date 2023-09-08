@@ -5,7 +5,6 @@ namespace App\Domains\Auth\Http\Requests\Backend\User;
 use App\Domains\Auth\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 class StoreUserRequest extends FormRequest
 {
@@ -23,7 +22,7 @@ class StoreUserRequest extends FormRequest
             ])],
             'name' => ['required', 'max:100'],
             'email' => ['required', 'max:255', 'email', Rule::unique('users')],
-            'password' => ['max:100', PasswordRules::register($this->email)],
+            'password' => ['required', 'string', 'min:8', 'max:100'],
             'active' => ['sometimes', 'in:1'],
             'email_verified' => ['sometimes', 'in:1'],
             'send_confirmation_email' => ['sometimes', 'in:1'],

@@ -2,6 +2,7 @@
 
 namespace App\Domains\Auth\Http\Controllers\Frontend\Auth;
 
+use App\Domains\Auth\Models\User;
 use App\Domains\Auth\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 use App\Rules\Captcha;
@@ -10,7 +11,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
-use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 class RegisterController extends Controller
 {
@@ -57,12 +57,12 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data): Validator
+    protected function validator(array $data): \Illuminate\Validation\Validator
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
-            'password' => array_merge(['max:100'], PasswordRules::register($data['email'] ?? null)),
+            'password' => ['required', 'string', 'min:8', 'max:100'],
             'terms' => ['required', 'in:1'],
             'g-recaptcha-response' => ['required_if:captcha_status,true', new Captcha],
         ], [
@@ -73,16 +73,11 @@ class RegisterController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
-     *
-     *
-     * @return \App\Domains\Auth\Models\User|mixed
-     *
-     * @throws \App\Domains\Auth\Exceptions\RegisterException
      */
     protected function create(array $data): User
     {
         abort_unless(config('template.access.user.registration'), 404);
 
-        return $this->userRepository->create($data);
+        return $this->userRepository->createOrUpdateFromArray($data);
     }
 }

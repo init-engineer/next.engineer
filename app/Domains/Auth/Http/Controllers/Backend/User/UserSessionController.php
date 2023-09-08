@@ -22,7 +22,7 @@ class UserSessionController extends Controller
     {
         $this->userRepository->updateByPrimary($user->id, [
             'to_be_logged_out' => true,
-        ]);
+        ], false);
 
         return redirect()
             ->back()

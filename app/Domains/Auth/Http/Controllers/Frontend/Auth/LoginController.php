@@ -11,7 +11,6 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
-use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 class LoginController extends Controller
 {
@@ -55,7 +54,7 @@ class LoginController extends Controller
     {
         $request->validate([
             $this->username() => ['required', 'max:255', 'string'],
-            'password' => array_merge(['max:100'], PasswordRules::login()),
+            'password' => ['required', 'string', 'min:8', 'max:100'],
             'g-recaptcha-response' => ['required_if:captcha_status,true', new Captcha],
         ], [
             'g-recaptcha-response.required_if' => __('validation.required', ['attribute' => 'captcha']),
@@ -67,10 +66,8 @@ class LoginController extends Controller
      * https://github.com/DarkGhostHunter/Laraguard#protecting-the-login.
      *
      * Attempt to log the user into the application.
-     *
-     * @return bool
      */
-    protected function attemptLogin(Request $request)
+    protected function attemptLogin(Request $request): bool
     {
         try {
             return $this->guard()->attempt(

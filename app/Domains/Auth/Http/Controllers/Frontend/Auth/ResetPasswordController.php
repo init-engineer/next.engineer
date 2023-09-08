@@ -9,7 +9,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 class ResetPasswordController extends Controller
 {
@@ -46,13 +45,13 @@ class ResetPasswordController extends Controller
         return [
             'token' => ['required'],
             'email' => ['required', 'max:255', 'email'],
-            'password' => array_merge(
-                [
-                    'max:100',
-                    new UnusedPassword(request('email')),
-                ],
-                PasswordRules::changePassword(request('email'))
-            ),
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'max:100',
+                new UnusedPassword(request('email'))
+            ],
         ];
     }
 

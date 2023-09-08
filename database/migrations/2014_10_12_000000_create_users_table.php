@@ -19,7 +19,7 @@ return new class extends Migration
                 User::TYPE_ADMIN,
                 User::TYPE_USER,
             ])->default(User::TYPE_USER);
-            $table->string('name')->default('Undefined');
+            $table->string('name')->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
