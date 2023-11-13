@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Crons extends Model
 {
-    use SoftDeletes,
-        CronsMethod;
+    use CronsMethod,
+        SoftDeletes;
 
     /**
      * The table associated with the model.

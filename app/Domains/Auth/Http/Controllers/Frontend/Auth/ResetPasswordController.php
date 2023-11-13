@@ -50,7 +50,7 @@ class ResetPasswordController extends Controller
                 'string',
                 'min:8',
                 'max:100',
-                new UnusedPassword(request('email'))
+                new UnusedPassword(request('email')),
             ],
         ];
     }

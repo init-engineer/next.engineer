@@ -32,7 +32,7 @@ class UnusedPassword implements ValidationRule
             }
         }
 
-        if (! $this->user || null === $this->user) {
+        if (! $this->user || $this->user === null) {
             $fail('User not found');
 
             return;
